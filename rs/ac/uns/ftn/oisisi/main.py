@@ -1,13 +1,13 @@
 
-#import tasks
-#import repositoryUtils as ru
+from rs.ac.uns.ftn.oisisi import zadaci, repositoryUtils
 
 
 def pickOption(option):     #u zavisnosti koju opciju izaberemo ,odredjena funkcija se izvrsava(varijabla ima pokazivac na funkciju)
     switcher = {
-        0: tasks.exit,
-        1: tasks.directorySelection,
-        4: tasks.wordSearch,
+        0: zadaci.exit,
+        1: zadaci.directorySelection,
+        #2: zadaci.paginacija,
+        3: zadaci.wordSearch,
       #  #  5: tasks.printContent,
     }
     func = switcher.get(option, lambda: "pogresna opcija")
@@ -24,7 +24,7 @@ def main():
     option = -1
     while option != 0:
         try:
-            #ru.cls()  # brisanje ekrana
+            repositoryUtils.cls()  # brisanje ekrana
             print("[1] Odabir direktorijuma")
             print("[2] Unesi n za paginaciju") #kolio hocemo rezultata
             print("[3] Pretraga reci ")
