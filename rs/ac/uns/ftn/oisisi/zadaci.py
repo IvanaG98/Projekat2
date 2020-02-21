@@ -1,7 +1,7 @@
 import importlib, importlib.util
 import os  # (ugradjeni modul)
 #import repositoryUtils as ru
-import networkx as nx
+
 
 from tkinter import *
 from tkinter.filedialog import askopenfilename
