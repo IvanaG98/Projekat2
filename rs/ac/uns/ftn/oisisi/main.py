@@ -1,40 +1,62 @@
 
-from rs.ac.uns.ftn.oisisi import zadaci, repositoryUtils
 
+from rs.ac.uns.ftn.oisisi.parsiranje import *
 
-def pickOption(option):     #u zavisnosti koju opciju izaberemo ,odredjena funkcija se izvrsava(varijabla ima pokazivac na funkciju)
-    switcher = {
-        0: zadaci.exit,
-        1: zadaci.directorySelection,
-        #2: zadaci.paginacija,
-        3: zadaci.wordSearch,
-      #  #  5: tasks.printContent,
-    }
-    func = switcher.get(option, lambda: "pogresna opcija")
-    func()
-    # Ako smo odabrali izlaz, nasilno izadji i ne pitaj nista
+from rs.ac.uns.ftn.oisisi.set import *
+from rs.ac.uns.ftn.oisisi.rangirana_pretraga import *
+from rs.ac.uns.ftn.oisisi.pretraga_rijeci import *
+
+def pickOption(option):
+    parser = ParsFiles()
+    ranger = Rangiranje()
+
+    if option == 1:
+        parser.parseFile()
+        print("Parsiranje je zavrseno.\n")
+        return
+
+    if option == 2:
+        parser.parseFile()
+        reci = input("Unesite rijeci za pretragu:")
+        (result, broj_reci) = wordSearch(reci, parser)
+        print(result)
+        return
+
+    if option == 3:
+        parser.parseFile()
+        reci = input("Unesite rijeci za pretragu:")
+        (result, broj_reci) = wordSearch(reci, parser)
+        ranger.rangiranje(result, parser.graph, parser.trie, reci, parser, broj_reci)
+        return
+
+    if option == 0:
+        exit()
+
     if option != 0:
-        quitOpt = input(" .. press any key to continue ... ")
-
-
-n = -1  # predefinisana peginacija
-
+        quitOpt = input("Pritisnite bilo sta da nastavite.")
 
 def main():
+#    parser = ParsFiles()
+ #   parser.parseFile()
+  #  reci = input("Unesite upit\n")
+   # (result, broj_reci) = wordSearch(reci, parser)
+
+   # print(result)
+    #ranger = Rangiranje()
+    #ranger.rangiranje(result, parser.graph, parser.trie, reci, parser, broj_reci)
+
     option = -1
     while option != 0:
         try:
-            repositoryUtils.cls()  # brisanje ekrana
-            print("[1] Odabir direktorijuma")
-            print("[2] Unesi n za paginaciju") #kolio hocemo rezultata
-            print("[3] Pretraga reci ")
-            print("[4] Ispisi sadrzaj")
-            print("[0] Prekid")
+            print("[1] Unesite putanju do fajla za parsiranje:")
+            print("[2] Pretraga rijeci:")
+            print("[3] Rangiranje stranica:")
+            print("[4] Prikazi konacne rezultate:")
+            print("[5] Paginacija rezultata:")
+            print("[0] Prekid:")
 
             option = int(input())
             pickOption(option)
         except ValueError:
-            print("Unesite neku od ponudjenih opcija:")
-
-
+            print("Please enter an integer")
 main()
