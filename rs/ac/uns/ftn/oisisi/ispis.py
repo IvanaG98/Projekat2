@@ -1,4 +1,3 @@
-
 class Ispis(object):
 
     def prikazRezultata(self,recnik,lista,lista1):

@@ -1,7 +1,5 @@
-
-
+from rs.ac.uns.ftn.oisisi.ispis import *
 from rs.ac.uns.ftn.oisisi.parsiranje import *
-
 from rs.ac.uns.ftn.oisisi.set import *
 from rs.ac.uns.ftn.oisisi.student2 import *
 from rs.ac.uns.ftn.oisisi.pretraga_rijeci import *
@@ -30,6 +28,16 @@ def pickOption(option):
         print(result)
         return
 
+    if option == 4:
+        parser.parseFile()
+        reci = input("Unesite rijeci za pretragu:")
+        (result, broj_reci) = wordSearch(reci, parser)
+        ranger.rangiranje(result, parser.graph, reci, parser, broj_reci)
+        ispis = Ispis()
+        ispis.prikazRezultata(ranger.recnik, ranger.listaRangova, result)
+        return
+
+        
     if option == 0:
         exit()
 
