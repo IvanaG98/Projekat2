@@ -24,7 +24,7 @@ class Graph(object):
             list as a value is added to the dictionary.
             Otherwise nothing has to be done.
         """
-        if vertex not in self.__graph_dict:
+        if vertex not in self.graph_dict:
             self.graph_dict[vertex] = []          #dodaje kljuc koji nema vred u ovom trenutku
 
     def add_edge(self, edge):
@@ -33,7 +33,7 @@ class Graph(object):
         """
         edge = set(edge)
         (vertex1, vertex2) = tuple(edge)
-        if vertex1 in self.__graph_dict:
+        if vertex1 in self.graph_dict:
             self.graph_dict[vertex1].append(vertex2)
         else:
             self.graph_dict[vertex1] = [vertex2]
