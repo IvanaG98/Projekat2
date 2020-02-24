@@ -18,7 +18,8 @@ def pickOption(option):
         parser.parseFile()
         reci = input("Unesite rijeci za pretragu:")
         (result, broj_reci) = wordSearch(reci, parser)
-        print(result)
+        for keys, values in result.items():
+            print(keys, values)
         return
 
     if option == 3:
