@@ -27,7 +27,7 @@ def wordSearch(words, parser):
                 if len(query) != 3:
                     print("Nije dobra duzina")
                 else:
-                    (result, broj_reci) = searchByQuery(query,parser)
+                    (result, broj_reci) = searchByQuery(query, parser)
     else:
         (result, broj_reci) = searchByWords(query, parser)
     return result, broj_reci

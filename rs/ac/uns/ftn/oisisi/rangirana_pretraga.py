@@ -12,13 +12,14 @@ class Rangiranje(object):
 
     def rangiranje(self, lista, graph, words, parser, broj_reci):
         rez = {}
-        if words[1] == "and":
-            words[1] = "or"
-            (rez,b) = wordSearch(words, parser)
-        elif words[1] == "not":
-            (rez, b) = wordSearch(words[0], parser)
-        else:
-            (rez, b) = wordSearch(words, parser)
+        if len(words) > 2 :
+            if words[1] == "and":
+                words[1] = "or"
+                (rez,b) = wordSearch(words, parser)
+            elif words[1] == "not":
+                (rez, b) = wordSearch(words[0], parser)
+            else:
+                (rez, b) = wordSearch(words, parser)
         for str in lista:
             self.par2 = lista[str] #broj rijeci na stranici
             self.par4 = broj_reci[str] #koliko reci iz upita se nalazi na nasoj stranici

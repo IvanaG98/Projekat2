@@ -23,19 +23,22 @@ class Paginacija(object):
         ispis.prikazRezultata(recnik, listaDela[self.trenutna])
 
 
-    def ukupan_broj_strana(self, lista):
+    def ukupan_broj_strana(self):
         return int(ceil(float(self.ukupno) / self.po_stranici))
 
     def sledeca_strana(self):
         str = self.ukupan_broj_strana()
         if self.trenutna + 1 != str:
             self.trenutna += 1
+            return True
         else:
             print("Dosli ste do kraja! Ne postoji naredna stranica.")
+            return False
 
     def prethodna_strana(self):
         if self.trenutna != 0:
             self.trenutna -= 1
+            return True
         else:
             print("Na prvoj ste stranici! Ne postoji prethodna.")
-
+            return False

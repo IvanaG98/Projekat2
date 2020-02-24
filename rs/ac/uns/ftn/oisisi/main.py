@@ -1,78 +1,70 @@
-from rs.ac.uns.ftn.oisisi.ispis import *
 from rs.ac.uns.ftn.oisisi.paginacija import *
 from rs.ac.uns.ftn.oisisi.parsiranje import *
 from rs.ac.uns.ftn.oisisi.rangirana_pretraga import *
 from rs.ac.uns.ftn.oisisi.pretraga_rijeci import *
 
-def pickOption(option):
+def main():
     parser = ParsFiles()
     ranger = Rangiranje()
+    parser.parseFile()
+    reci = input("Unesite rijeci za pretragu:\n")
+    (result, broj_reci) = wordSearch(reci, parser)
 
+    ranger.rangiranje(result, parser.graph, reci, parser, broj_reci)
+    lista = sortiranje(ranger.recnik)
 
-    if option == 1:
-        parser.parseFile()
-        print("Parsiranje je zavrseno.\n")
-        return
-
-    if option == 2:
-        parser.parseFile()
-        reci = input("Unesite rijeci za pretragu:")
-        (result, broj_reci) = wordSearch(reci, parser)
-        for keys, values in result.items():
-            print(keys, values)
-        return
-
-    if option == 3:
-        parser.parseFile()
-        reci = input("Unesite rijeci za pretragu:")
-        (result, broj_reci) = wordSearch(reci, parser)
-        ranger.rangiranje(result, parser.graph, reci, parser, broj_reci)
-        print(result)
-        return
-
-    if option == 4:
-        parser.parseFile()
-        reci = input("Unesite rijeci za pretragu:")
-        (result, broj_reci) = wordSearch(reci, parser)
-        ranger.rangiranje(result, parser.graph, reci, parser, broj_reci)
-        lista = sortiranje(ranger.recnik)
-        ispis = Ispis()
-        ispis.prikazRezultata(ranger.recnik, lista)
-        return
-
-    if option == 5:
-        parser.parseFile()
-        reci = input("Unesite rijeci za pretragu:")
-        (result, broj_reci) = wordSearch(reci, parser)
-        ranger.rangiranje(result, parser.graph, reci, parser, broj_reci)
-        lista = sortiranje(ranger.recnik)
-        paginator = Paginacija(len(lista), 5, 0)
-        pag = paginator.paginacija(5, lista)
-        paginator.ispisiStranu(pag, ranger.recnik)
-        return
-
-    if option == 0:
-        exit()
-
-    if option != 0:
-        quitOpt = input("Pritisnite bilo sta da nastavite.")
-
-def main():
 
     option = -1
     while option != 0:
         try:
-            print("[1] Unesite putanju do fajla za parsiranje:")
-            print("[2] Pretraga rijeci:")
-            print("[3] Rangiranje stranica:")
-            print("[4] Prikazi konacne rezultate:")
-            print("[5] Paginacija rezultata:")
-            print("[0] Prekid:")
+            print("[1] Prikazi konacne rezultate.")
+            print("[2] Paginacija rezultata.")
+            print("[0] Izlazak iz programa.\n")
+            option = int(input("Unesite opciju koju zelite:"))
+            if option == 1:
+                ispis = Ispis()
+                ispis.prikazRezultata(ranger.recnik, lista)
 
-            option = int(input())
-            pickOption(option)
+            if option == 2:
+                n = int(input("Unesite broj strana za paginaciju:\n"))
+                while True:
+                    paginator = Paginacija(len(lista), n, 0)
+                    pag = paginator.paginacija(n, lista)
+                    paginator.ispisiStranu(pag, ranger.recnik)
+
+
+                    print("[1] Prethodna stranica:\n")
+                    print("[2] Naredna stranica:\n")
+                    print("[3] Promjenite broj stranica za paginaciju.\n")
+                    print("[0] Izlazak.\n")
+
+                    option2 = int(input("Unesite narednu opciju:\n"))
+
+                    if option2 == 1:
+                        pag1 = paginator.prethodna_strana()
+                        pag = paginator.paginacija(n, lista)
+                        if pag1:
+                            paginator.ispisiStranu(pag, ranger.recnik)
+
+                    if option2 == 2:
+                        pag1 = paginator.sledeca_strana()
+                        pag = paginator.paginacija(n, lista)
+                        if pag1:
+                            paginator.ispisiStranu(pag, ranger.recnik)
+
+                    if option2 == 3:
+                        n = int(input("Unesite broj strana za paginaciju:\n"))
+
+                    if option2 == 0:
+                        exit()
+            if option == 0:
+                exit()
+
+            if option != 0:
+                quitOpt = input("Pritisnite bilo sta da nastavite.")
+
         except ValueError:
-            print("Please enter an integer")
+            print("Niste dobro unijeli.")
 
 if __name__ == '__main__':
     main()
