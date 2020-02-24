@@ -1,12 +1,13 @@
 from rs.ac.uns.ftn.oisisi.ispis import *
+from rs.ac.uns.ftn.oisisi.paginacija import *
 from rs.ac.uns.ftn.oisisi.parsiranje import *
-from rs.ac.uns.ftn.oisisi.set import *
-from rs.ac.uns.ftn.oisisi.student2 import *
+from rs.ac.uns.ftn.oisisi.rangirana_pretraga import *
 from rs.ac.uns.ftn.oisisi.pretraga_rijeci import *
 
 def pickOption(option):
     parser = ParsFiles()
     ranger = Rangiranje()
+    paginator = Paginator()
 
     if option == 1:
         parser.parseFile()
@@ -34,10 +35,17 @@ def pickOption(option):
         (result, broj_reci) = wordSearch(reci, parser)
         ranger.rangiranje(result, parser.graph, reci, parser, broj_reci)
         ispis = Ispis()
-        ispis.prikazRezultata(ranger.recnik, ranger.listaRangova, result)
+        ispis.prikazRezultata(ranger.recnik)
         return
 
-        
+    if option == 5:
+        parser.parseFile()
+        reci = input("Unesite rijeci za pretragu:")
+        (result, broj_reci) = wordSearch(reci, parser)
+      #  ranger.rangiranje(result, parser.graph, reci, parser, broj_reci)
+        paginator.paginator()
+        return
+
     if option == 0:
         exit()
 
@@ -45,14 +53,6 @@ def pickOption(option):
         quitOpt = input("Pritisnite bilo sta da nastavite.")
 
 def main():
-#    parser = ParsFiles()
- #   parser.parseFile()
-  #  reci = input("Unesite upit\n")
-   # (result, broj_reci) = wordSearch(reci, parser)
-
-   # print(result)
-    #ranger = Rangiranje()
-    #ranger.rangiranje(result, parser.graph, parser.trie, reci, parser, broj_reci)
 
     option = -1
     while option != 0:
@@ -68,4 +68,6 @@ def main():
             pickOption(option)
         except ValueError:
             print("Please enter an integer")
-main()
+
+if __name__ == '__main__':
+    main()

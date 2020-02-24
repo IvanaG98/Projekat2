@@ -4,11 +4,12 @@ from rs.ac.uns.ftn.oisisi.Trie import *
 def searchByWords(query, parser):
     data = []
     set = Set()
+
     for word in query:
         if find_prefix(parser.trie, word) is not None:
             data.append(find_prefix(parser.trie, word))
             set.unija(data)
-    #print(set.recnik)
+
     return set.recnik, set.broj_reci
 
 

@@ -25,7 +25,8 @@ class Set(object):
 
     def komplement(self, lista):
         self.recnik = lista[0]
+        for key in self.recnik:
+            self.broj_reci[key] = 1
         for link1 in lista[1]:
             if link1 in self.recnik:
-                self.broj_reci[link1] = 1
                 del self.recnik[link1]
