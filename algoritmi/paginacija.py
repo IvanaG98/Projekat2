@@ -11,6 +11,9 @@ class Paginacija(object):
 
     def paginacija(self, broj, lista):
         self.po_stranici = broj
+        if lista == []:
+            print("ne postoji stranica koja ispunjava te zahtjeve")
+            exit()
         listaDela = []
         for i in range(0, len(lista), self.po_stranici):
             deo = lista[i:i + self.po_stranici]

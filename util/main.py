@@ -2,13 +2,14 @@ from algoritmi.paginacija import *
 from util.parsiranje import *
 from algoritmi.rangirana_pretraga import *
 from algoritmi.pretraga_rijeci import *
+from algoritmi.sortiranje import  *
 
 def main():
     parser = ParsFiles()
     ranger = Rangiranje()
     parser.parseFile()
     reci = input("Unesite rijeci za pretragu:\n")
-    (result, broj_reci) = wordSearch(reci, parser)
+    (result, broj_reci) = pretraga(reci, parser)
 
     ranger.rangiranje(result, parser.graph, reci, parser, broj_reci)
     lista = sortiranje(ranger.recnik)

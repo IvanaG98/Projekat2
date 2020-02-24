@@ -15,11 +15,11 @@ class Rangiranje(object):
         if len(words) > 2 :
             if words[1] == "and":
                 words[1] = "or"
-                (rez,b) = wordSearch(words, parser)
+                (rez,b) = pretraga(words, parser)
             elif words[1] == "not":
-                (rez, b) = wordSearch(words[0], parser)
+                (rez, b) = pretraga(words[0], parser)
             else:
-                (rez, b) = wordSearch(words, parser)
+                (rez, b) = pretraga(words, parser)
         for str in lista:
             self.par2 = lista[str] #broj rijeci na stranici
             self.par4 = broj_reci[str] #koliko reci iz upita se nalazi na nasoj stranici
