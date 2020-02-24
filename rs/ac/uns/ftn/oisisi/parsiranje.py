@@ -14,6 +14,9 @@ class ParsFiles(object) :
     def parseFile(self):
         print("Unesite putanju:\n")
         rootdir = input()
+        if not os.path.exists(rootdir):
+            print("Putanja koju ste unijeli je pogresna")
+            exit()
         parser = Parser()
         for subdir, dirs, files in os.walk(rootdir):
             for file in files:
