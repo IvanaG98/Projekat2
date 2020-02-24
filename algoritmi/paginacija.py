@@ -1,6 +1,6 @@
 from math import ceil
 
-from rs.ac.uns.ftn.oisisi.ispis import *
+from algoritmi.ispis import *
 
 class Paginacija(object):
 

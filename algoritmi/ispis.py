@@ -1,5 +1,3 @@
-from rs.ac.uns.ftn.oisisi.sortiranje import *
-
 class Ispis(object):
 
     def prikazRezultata(self, recnik, lista):

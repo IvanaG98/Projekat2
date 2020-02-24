@@ -1,4 +1,4 @@
-from rs.ac.uns.ftn.oisisi.pretraga_rijeci import *
+from algoritmi.pretraga_rijeci import *
 
 class Rangiranje(object):
 
