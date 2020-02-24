@@ -7,7 +7,7 @@ from rs.ac.uns.ftn.oisisi.pretraga_rijeci import *
 def pickOption(option):
     parser = ParsFiles()
     ranger = Rangiranje()
-    paginator = Paginator()
+
 
     if option == 1:
         parser.parseFile()
@@ -34,16 +34,20 @@ def pickOption(option):
         reci = input("Unesite rijeci za pretragu:")
         (result, broj_reci) = wordSearch(reci, parser)
         ranger.rangiranje(result, parser.graph, reci, parser, broj_reci)
+        lista = sortiranje(ranger.recnik)
         ispis = Ispis()
-        ispis.prikazRezultata(ranger.recnik)
+        ispis.prikazRezultata(ranger.recnik, lista)
         return
 
     if option == 5:
         parser.parseFile()
         reci = input("Unesite rijeci za pretragu:")
         (result, broj_reci) = wordSearch(reci, parser)
-      #  ranger.rangiranje(result, parser.graph, reci, parser, broj_reci)
-        paginator.paginator()
+        ranger.rangiranje(result, parser.graph, reci, parser, broj_reci)
+        lista = sortiranje(ranger.recnik)
+        paginator = Paginacija(len(lista), 5, 0)
+        pag = paginator.paginacija(5, lista)
+        paginator.ispisiStranu(pag, ranger.recnik)
         return
 
     if option == 0:

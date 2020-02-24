@@ -2,60 +2,40 @@ from math import ceil
 
 from rs.ac.uns.ftn.oisisi.ispis import *
 
+class Paginacija(object):
 
-class Paginator(object):
+    def __init__(self, ukupno, po_stranici, trenutna):
+        self.ukupno = ukupno
+        self.po_stranici = po_stranici
+        self.trenutna = trenutna
 
-    def __init__(self, total=None, per_page=100, current_page=1):
-        """init with total number of items in your set, how many you want per_page, and set the current_page you are on"""
-        self.total = total
-        self.per_page = per_page
-        self.current_page = current_page
+    def paginacija(self, broj, lista):
+        self.po_stranici = broj
+        listaDela = []
+        for i in range(0, len(lista), self.po_stranici):
+            deo = lista[i:i + self.po_stranici]
+            listaDela.append(deo)
 
+        return listaDela
 
-    def repr__(self):
-        return str(self.__dict__)
-
-    def total_pages(self, lista):
-        """The number of pages this pagination can have due to the total and per_page, e.g. total 10, per_page 5 = 2 total_pages
-        Cast to float so result is float, round up, then back to int
-        """
+    def ispisiStranu(self, listaDela, recnik):
         ispis = Ispis()
-        input("Unesite koliko stranica zelite za paginaciju:\n")
-        if self.total > len(lista):
-            print("Unos nije moguc!Broj stranica je veci nego sto treba.")
-
-        #ispis.prikazRezultata()
-
-        return int(ceil(float(self.total) / self.per_page))
-
-    def pages(self):
-        """Returns list of integers of pages e.g. for 3 pages [1,2,3]"""
-        return range(1, self.total_pages + 1)
-
-    def next_page(self):
-        """The page number after the current_page or None"""
-        if self.current_page == self.total:
-            print("Dosli ste do poslednje stranice.\n")
+        ispis.prikazRezultata(recnik, listaDela[self.trenutna])
 
 
-        return self._get_page_offset(+1)
+    def ukupan_broj_strana(self, lista):
+        return int(ceil(float(self.ukupno) / self.po_stranici))
 
-    def prev_page(self):
-        """The page number before the current_page or None"""
+    def sledeca_strana(self):
+        str = self.ukupan_broj_strana()
+        if self.trenutna + 1 != str:
+            self.trenutna += 1
+        else:
+            print("Dosli ste do kraja! Ne postoji naredna stranica.")
 
-        return self._get_page_offset(-1)
+    def prethodna_strana(self):
+        if self.trenutna != 0:
+            self.trenutna -= 1
+        else:
+            print("Na prvoj ste stranici! Ne postoji prethodna.")
 
-
-    def _get_page_offset(self, offset):
-        """Give an offset, +1 or -1 and the page number around the current_page will be returned
-        So if we are on current_page 2 and pass +1 we get 3, if we pass -1 we get 1.  Or None if not valid
-        """
-        try:
-            return self.pages[self.pages.index(self.current_page + offset)]
-        except ValueError:
-            return None
-
-
-    def start(self):
-        """The starting offset used when querying"""
-        return self.current_page * self.per_page - self.per_page

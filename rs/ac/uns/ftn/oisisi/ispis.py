@@ -1,20 +1,22 @@
+from rs.ac.uns.ftn.oisisi.sortiranje import *
+
 class Ispis(object):
 
-    def prikazRezultata(self, recnik):
-        print("LEGENDA:\n")
-        print("Rang - R\nLink stranice - L\nBroj linkova ka njoj - BRL\nBroj rijeci na njoj - BRR\nBroj rijeci na stranicama koje ukazuju na nju - BRLR\nBroj rijeci iz pretrage koje se pojavljuju na toj stranici - BRPR\n")
-        print("                 R                              L                                             BRL    BRR   BRLR   BRPR\n")
+    def prikazRezultata(self, recnik, lista):
+        prvi = "RANG"
+        drugi = "STRANICA"
+        treci = "BROJ LINKOVA NA NJU"
+        cetvrti = "BROJ RIJECI NA STR"
+        peti = "BROJ RIJECI NA LINKU"
+        sesti = "POJAVLJIVANJE"
+        print(prvi.center(15, " "), drugi.center(90, " "), treci.center(20, " "), cetvrti.center(20," "), peti.center(10, " "), sesti.center(10, " "))
 
-        lista = list(recnik.keys())
         n = len(lista)
-        for i in range(n):
-            for j in range(0, n - i - 1):
-                if lista[j] < lista[j + 1]:
-                    lista[j], lista[j + 1] = lista[j + 1], lista[j]
         for i in range(n):
             key = lista[i]
             pomocna = recnik[key]
-            print(round(key,2), pomocna[0], pomocna[1], pomocna[2], pomocna[3], pomocna[4])
+            print(str(round(key,2)).center(15, " "), pomocna[0].center(90, " "), str(pomocna[1]).center(20, " "), str(pomocna[2]).center(20, " "), str(pomocna[3]).center(15, " "), str(pomocna[4]).center(30, " "))
+
 
 
 
