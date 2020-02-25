@@ -69,14 +69,6 @@ def main():
                         if option2 == 4:
                             break
 
-                    if option2 == 3:
-                        n = int(input("Unesite broj strana za paginaciju:\n"))
-                        if n < 0:
-                            print("pogresan unos broja za  paginaciju")
-                            exit()
-
-                        if option2 == 0:
-                            exit()
             if option == 0:
                 exit()
 
