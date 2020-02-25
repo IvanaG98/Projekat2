@@ -28,6 +28,9 @@ def main():
 
             if option == 2:
                 n = int(input("Unesite broj strana za paginaciju:\n"))
+                if n<0:
+                    print("pogresan unos broja za paginaciju")
+                    exit()
                 while True:
                     paginator = Paginacija(len(lista), n, 0)
                     pag = paginator.paginacija(n, lista)
@@ -55,6 +58,9 @@ def main():
 
                     if option2 == 3:
                         n = int(input("Unesite broj strana za paginaciju:\n"))
+                        if n < 0:
+                            print("pogresan unos broja za  paginaciju")
+                            exit()
 
                     if option2 == 0:
                         exit()
