@@ -1,21 +1,22 @@
-#lista linkova iz parsera
-#lista reci iz parsera
 from struktura.graph import *
 from struktura.Trie import *
 from util.parser import *
 
 class ParsFiles(object) :
-    def __init__(self):     #konstruktor
+    def __init__(self):
         self.recnik = {}
         self.graph = Graph()
         self.trie = TrieNode(-1)
 
     def parseFile(self):
         print("Unesite putanju:\n")
+
         rootdir = input()
+
         if not os.path.exists(rootdir):
-            print("Putanja koju ste unijeli je pogresna")
+            print("Putanja koju ste unijeli je pogresna.\n")
             exit()
+
         parser = Parser()
         for subdir, dirs, files in os.walk(rootdir):
             for file in files:

@@ -18,10 +18,10 @@ def main():
     option = -1
     while option != 0:
         try:
-            print("[1] Prikazi konacne rezultate.")
-            print("[2] Paginacija rezultata.")
-            print("[0] Izlazak iz programa.\n")
-            option = int(input("Unesite opciju koju zelite:"))
+            print("1  - Prikazi konacne rezultate.\n")
+            print("2  - Paginacija rezultata.\n")
+            print("0  - Izlazak iz programa.\n")
+            option = int(input("Unesite opciju koju zelite:\n"))
             if option == 1:
                 ispis = Ispis()
                 ispis.prikazRezultata(ranger.recnik, lista)
@@ -34,10 +34,10 @@ def main():
                     paginator.ispisiStranu(pag, ranger.recnik)
 
 
-                    print("[1] Prethodna stranica:\n")
-                    print("[2] Naredna stranica:\n")
-                    print("[3] Promjenite broj stranica za paginaciju.\n")
-                    print("[0] Izlazak.\n")
+                    print("1 -  Prethodna stranica:\n")
+                    print("2 -  Naredna stranica:\n")
+                    print("3 -  Promjenite broj stranica za paginaciju:\n")
+                    print("0 -  Izlazak.\n")
 
                     option2 = int(input("Unesite narednu opciju:\n"))
 
@@ -61,11 +61,8 @@ def main():
             if option == 0:
                 exit()
 
-            if option != 0:
-                quitOpt = input("Pritisnite bilo sta da nastavite.")
-
         except ValueError:
-            print("Niste dobro unijeli.")
+            print("Niste dobro unijeli.\n")
 
 if __name__ == '__main__':
     main()

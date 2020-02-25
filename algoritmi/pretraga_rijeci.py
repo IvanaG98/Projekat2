@@ -69,5 +69,3 @@ def pretragaSaOperatorima(query, parser):
                 result.komplement(lista)
 
     return result.recnik, result.broj_reci
-
-

@@ -1,3 +1,8 @@
+"""U ovom fajlu nalazi se metoda za sortiranje.
+   Upotrebljen je quick sort algoriram za sortiranje.
+   Prvo smo prebacili recnik u listu ciji kljucevi su rangovi stranica,
+   a potom je sortirano na osnovu izracunatog ranga u fajlu rangirana_pretraga."""
+
 def sortiranje(recnik):
 
     lista = list(recnik.keys())
