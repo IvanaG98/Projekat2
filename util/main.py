@@ -31,6 +31,7 @@ def main():
                     print("Broj strana za paginaciju mora biti veci od 0.")
                     continue
                 else:
+
                     paginator = Paginacija(len(lista), n, 0)
                     pag = paginator.paginacija(n, lista)
                     paginator.ispisiStranu(pag, ranger.recnik)
@@ -64,9 +65,15 @@ def main():
                             pag = paginator.paginacija(n, lista)
                             paginator.ispisiStranu(pag, ranger.recnik)
 
+
                         if option2 == 4:
                             break
 
+                    if option2 == 3:
+                        n = int(input("Unesite broj strana za paginaciju:\n"))
+                        if n < 0:
+                            print("pogresan unos broja za  paginaciju")
+                            exit()
 
                         if option2 == 0:
                             exit()
