@@ -33,7 +33,7 @@ class Rangiranje(object):
             #potom broj rijeci na stranici
             #i broj linkova na nju
 
-            rang = (0.6 * self.par3 + 0.3 * self.par2 + 0.1 * self.par1) * self.par4
+            rang = (0.5 * self.par3 + 0.3 * self.par2 + 0.2 * self.par1) * self.par4
 
             self.recnik[rang] = (str, self.par1, self.par2, self.par3, self.par4)
         return self.recnik

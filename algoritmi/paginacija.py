@@ -15,7 +15,7 @@ class Paginacija(object):
         self.po_stranici = broj
 
         if lista == []:
-            print("Ne postoji stranica koja ispunjava te zahtjeve")
+            print("Ne postoji stranica koja ispunjava te zahtjeve.\n")
             exit()
 
         listaDela = []           #podijelicemo listu na dijelove da bi nam u zavisnosti od unijetog broja strana koji zelimo ispisao te strane
@@ -39,11 +39,11 @@ class Paginacija(object):
             self.trenutna += 1
             return True
         else:
-            print("Dosli ste do kraja! Ne postoji naredna stranica.")
+            print("Dosli ste do kraja! Ne postoji naredna stranica.\n")
             return False
 
     def prethodna_strana(self):                         #vratice se na prethodnu stranu ukoliko se ne nalazi na prvoj stranici
-        if self.trenutna != 0:
+        if self.trenutna > 0:
             self.trenutna -= 1
             return True
         else:
